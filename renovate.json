@@ -1,0 +1,31 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended"
+  ],
+  "semanticCommits": "enabled",
+  "regexManagers": [
+    {
+      "fileMatch": [
+        ".github/workflows/build.yml"
+      ],
+      "matchStrings": [
+        "PORTAGEDATE: (?<currentValue>.*)"
+      ],
+      "depNameTemplate": "gentoo/stage3",
+      "datasourceTemplate": "docker",
+      "versioningTemplate": "docker"
+    }
+  ],
+  "packageRules": [
+    {
+      "description": "Automerge gentoo/stage3",
+      "matchPackageNames": ["gentoo/stage3"],
+      "matchUpdateTypes": ["major"],
+      "automerge": true,
+      "automergeType": "branch",
+      "platformAutomerge": false,
+      "ignoreTests": true
+    }
+  ]
+}
