@@ -17,14 +17,13 @@
       "versioningTemplate": "docker"
     }
   ],
+  "rebaseWhen": "behind-base-branch",
   "packageRules": [
     {
       "description": "Automerge gentoo/stage3",
       "matchPackageNames": ["gentoo/stage3"],
-      "matchUpdateTypes": ["major"],
       "automerge": true,
-      "automergeType": "branch",
-      "platformAutomerge": false,
+      "automergeType": "fast-forward",
       "ignoreTests": true
     }
   ]
