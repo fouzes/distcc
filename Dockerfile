@@ -1,4 +1,4 @@
-ARG PORTAGEDATE
+ARG PORTAGEDATE=20240318
 
 FROM gentoo/portage:${PORTAGEDATE} AS portage-image
 
@@ -8,8 +8,10 @@ RUN --mount=type=bind,from=ghcr.io/fouzes/distcc,source=/var/cache/binpkgs,targe
     set -eux; \
     cp -av /cache/. /var/cache/binpkgs; \
     cp -a /var/db/repos/gentoo/profiles/. /profiles; \
+    export NEW_PROFILE_PATH=$(readlink /etc/portage/make.profile | sed -e 's/..\/..\/var\/db\/repos\/gentoo//'); \
+    echo ${NEW_PROFILE_PATH}; \
     rm /etc/portage/make.profile; \
-    ln -s /profiles/default/linux/amd64/17.1 /etc/portage/make.profile; \
+    ln -s ${NEW_PROFILE_PATH} /etc/portage/make.profile; \
     export EMERGE_DEFAULT_OPTS="--buildpkg --color=y --quiet-build --tree --usepkg --verbose"; \
     emerge sys-devel/distcc sys-devel/clang; \
     distcc --version; \
