@@ -5,8 +5,9 @@
     ":rebaseStalePrs"
   ],
   "semanticCommits": "enabled",
-  "regexManagers": [
+  "customManagers": [
     {
+      "customType": "regex",
       "fileMatch": [
         ".github/workflows/build.yml"
       ],
@@ -21,8 +22,12 @@
   "packageRules": [
     {
       "description": "Automerge gentoo/stage3",
-      "matchPackageNames": ["gentoo/stage3"],
-      "matchUpdateTypes": ["major"],
+      "matchPackageNames": [
+        "gentoo/stage3"
+      ],
+      "matchUpdateTypes": [
+        "major"
+      ],
       "minimumReleaseAge": "1 day",
       "automerge": true,
       "automergeType": "branch",
