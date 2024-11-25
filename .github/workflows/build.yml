@@ -8,7 +8,7 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
-  PORTAGEDATE: 20241123
+  PORTAGEDATE: 20241125
 
 jobs:
   build-and-push-image:
