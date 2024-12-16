@@ -13,7 +13,7 @@ RUN --mount=type=bind,from=ghcr.io/fouzes/distcc,source=/var/cache/binpkgs,targe
     rm /etc/portage/make.profile; \
     ln -s ${NEW_PROFILE_PATH} /etc/portage/make.profile; \
     export EMERGE_DEFAULT_OPTS="--buildpkg --color=y --quiet-build --tree --usepkg --verbose"; \
-    emerge sys-devel/distcc sys-devel/clang; \
+    emerge sys-devel/distcc llvm-core/clang; \
     distcc --version; \
     emerge --oneshot gentoolkit; \
     eclean-pkg -d; \
