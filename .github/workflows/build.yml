@@ -3,7 +3,7 @@ name: Create and publish a Docker image
 on:
   workflow_dispatch:
   push:
-    branches: ['main']
+    branches: ['dev-test']
 
 env:
   REGISTRY: ghcr.io
@@ -11,7 +11,7 @@ env:
   PORTAGEDATE: 20250210
 
 jobs:
-  build-and-push-image:
+  test-build-and-push-image:
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -37,7 +37,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
-          push: true
+          push: false
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |

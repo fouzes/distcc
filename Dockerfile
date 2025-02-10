@@ -9,10 +9,12 @@ RUN --mount=type=bind,from=ghcr.io/fouzes/distcc,source=/var/cache/binpkgs,targe
     cp -av /cache/. /var/cache/binpkgs; \
     cp -a /var/db/repos/gentoo/profiles/. /profiles; \
     export NEW_PROFILE_PATH=$(readlink /etc/portage/make.profile | sed -e 's/..\/..\/var\/db\/repos\/gentoo//'); \
+    export PORTAGE_BINHOST="https://distfiles.gentoo.org/releases/amd64/binpackages/23.0/x86-64/"; \
+    export FEATURES="getbinpkg"; \
     echo ${NEW_PROFILE_PATH}; \
     rm /etc/portage/make.profile; \
     ln -s ${NEW_PROFILE_PATH} /etc/portage/make.profile; \
-    export EMERGE_DEFAULT_OPTS="--buildpkg --color=y --quiet-build --tree --usepkg --verbose"; \
+    export EMERGE_DEFAULT_OPTS="--color=y --quiet-build --tree --usepkgonly --verbose"; \
     emerge sys-devel/distcc llvm-core/clang; \
     distcc --version; \
     emerge --oneshot gentoolkit; \
