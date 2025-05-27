@@ -8,8 +8,8 @@
   "customManagers": [
     {
       "customType": "regex",
-      "fileMatch": [
-        ".github/workflows/build.yml"
+      "managerFilePatterns": [
+        "/.github/workflows/build.yml/"
       ],
       "matchStrings": [
         "PORTAGEDATE: (?<currentValue>.*)"
